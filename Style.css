@@ -1,0 +1,87 @@
+
+
+
+p {
+    margin: 0 0 10px;
+    font-size: 16px;
+}
+
+caption {
+text-align: center;
+font-size: 16px;
+}
+
+.content-wrapper, .right-side{
+background-color: #FFFFFF;
+}
+
+.skin-red .main-header .logo {
+    background-color: #d73925bd;
+    color: #fff;
+    border-bottom: 0 solid transparent;
+}
+
+.skin-red .main-header .navbar {
+    background-color: #d73925bd;
+}
+
+.skin-red .sidebar-menu>li.active>a, .skin-red .sidebar-menu>li:hover>a {
+    color: #fff;
+    background: #1e282c;
+    border-left-color: #d73925bd;
+}
+
+.nav-tabs-custom>.nav-tabs>li.active {
+    border-top-color: #d73925bd;
+}
+
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+    margin-left: 20px;
+    font-size: 16px;
+}
+
+/*.form-control {
+padding-left: 45px;
+font-size: 16px;
+margin-left:125px;
+border-color: #00c0ef;
+border-width: medium;
+}*/
+
+.form-control {
+border-color: #00a65a;
+border-width: medium;
+}
+
+.box{border-top: 0px;}
+
+table{
+font-size: 16px;
+}
+
+
+
+/*background: rgba(255, 255, 255, 1);*/
+
+.leaflet-control-layers-expanded {
+    padding: 6px 10px 6px 6px;
+    color: #333;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+div#pic{
+	width: 50px;
+}
+
+
+#A6title{
+    font-size: 16px;
+}
+
+#A6Inst{
+    font-size: 16px;
+}
