@@ -15,4 +15,7 @@ library(png)
 library(grid)
 library(rintrojs)
 
-discards <- read.csv("data/discards.csv")
+discards <- read.csv("data/discards.csv", stringsAsFactors = FALSE)
+colnames(discards) <- c("Species", "Sector", "Gear",
+                        "Year", "NumberDiscarded", "LbsDiscarded",
+                        "LbsDeadDiscarded")
