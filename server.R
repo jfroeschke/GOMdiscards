@@ -56,7 +56,10 @@ server <- function(input, output) {
     #df <- data.frame(Year=1:10, y=11:20)
   discardsOutPlot <- highchart() %>%
     hc_xAxis(categories =df$Year) %>%
-    hc_title(text=paste(1,2,input$pickDiscard, sep="+")) %>%
+    hc_title(text=paste(input$pickSpecies, input$pickYear[1], "-", 
+                        input$pickYear[2], sep=" ")) %>%
+    hc_subtitle(text=paste(input$pickDiscard, ": ", 
+                        input$pickGear, sep="")) %>%
      hc_add_series(name = input$pickDiscard, data = df[,2], type="line", marker = list(enabled = FALSE), color="#fb9a99") #%>%
     # discardsOutPlot
   discardsOutPlot
@@ -87,17 +90,24 @@ server <- function(input, output) {
                       Units= colnames(df)
                       )
     
-    # df2 <- data.frame( Year = selectYearPlot()$Year, Discards= selectYearPlot()[,input$pickDiscard])
-    # colnames(df2) <- c("Year", input$pickDiscard)
+
     print(df2)
   })
 
-# titleReactive <- reactive({paste(input$pickSpecies, input$pickSector, 
-#                                  input$pickGear, paste(input$pickYear[1],
-#                                                        input$pickYear[2], sep="-" ), sep=" ")    
-#                             })
+  
+  
+
+
+### use this concept to get discard mortality, use a similar one for avg weight
+  output$valueBox1 <- renderValueBox({
+
+    x <-  1
+    color <- 'green'
+    if(x > 0) color <- 'red'
+    valueBox(value = x, subtitle = 'Valuebox example', color = color)
+  })
+  
 }  
   
 
 
-#speciesPlot <- filter(discards, Species==input$pickSpecies)

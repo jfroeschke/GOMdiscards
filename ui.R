@@ -73,7 +73,8 @@ ui <-
               title="Summary of discards",
               tableOutput("table1"),
                infoBox(10 * 2, "Discard mortality rate", icon = icon("credit-card")),
-               valueBox(10 * 2, "Average size of discards", icon = icon("credit-card")),
+              valueBoxOutput('valueBox1'),
+               #valueBox(10 * 2, "Average size of discards", icon = icon("credit-card")),
                valueBox(10 * 2, "Percent annual change", icon = icon("credit-card"))
                )
                #plotOutput("plot2")
