@@ -19,3 +19,5 @@ discards <- read.csv("data/discards.csv", stringsAsFactors = FALSE)
 colnames(discards) <- c("Species", "Sector", "Gear",
                         "Year", "NumberDiscarded", "LbsDiscarded",
                         "LbsDeadDiscarded")
+
+# test from laptop
