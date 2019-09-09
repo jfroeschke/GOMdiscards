@@ -1,7 +1,7 @@
 ui <- 
   
   dashboardPage(
-                dashboardHeader(title="GOM Discards"),
+                dashboardHeader(title=" "),
                 dashboardSidebar(disable=TRUE,
                   
                   sidebarMenu(disable = TRUE,
@@ -27,7 +27,7 @@ ui <-
   
 
     tabsetPanel(
-      tabPanel("Plot", 
+      tabPanel("Dashboard", 
                
                fluidRow(
                   column(width = 3,
@@ -81,7 +81,7 @@ ui <-
                ))),
                
 #############################################################        
-      tabPanel("Summary",fluidRow(
+      tabPanel("About the data",fluidRow(
         column(width = 2
 
         ),
@@ -108,24 +108,18 @@ ui <-
                  )
                ),
         column(width = 2)
-        ))#,
+        )),
 #############################################################             
       
       
   
-# tabPanel("Summary3",fluidRow(
-#   column(width = 3,
-#          pickerInput(
-#            inputId = "pickSpecies",
-#            label = "Select species3",
-#            
-#            choices = c("RedSnapper",
-#                        "Greater amberjack",
-#                        
-#                        "Gag"))
-#          
-#   ),
-#   column(width = 9, "summary")))#,
+tabPanel("Gulf of Mexico discard data",fluidRow(
+  column(width = 1),
+  column(width=10,DTOutput('tbl')),
+  column(width=1)
+         )
+      )
+#))#,
 
 
         #) #tabPanel

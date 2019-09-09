@@ -14,16 +14,15 @@ library(RCurl)
 library(png)
 library(grid)
 library(rintrojs)
+library(DT)
 
 discards <- read.csv("data/discards.csv", stringsAsFactors = FALSE)
 colnames(discards) <- c("Species", "Sector", "Gear",
                         "Year", "NumberDiscarded", "LbsDiscarded",
                         "LbsDeadDiscarded", "DiscardMortality")
 
-# test from laptop
+# Add commercial and recreational totals for red snapper
 library(doBy)
-
-
 x <- discards
 
 rsAgg <- summaryBy(NumberDiscarded + LbsDiscarded +LbsDeadDiscarded 
@@ -39,3 +38,21 @@ rsAgg2 <- data.frame(Species= rsAgg$Species,
                      DiscardMortality = rsAgg$DiscardMortality)
 
 discards <- rbind(discards, rsAgg2)
+
+## clean up the data a bit.
+discards[,5:7] <- round(discards[,5:7], 0)
+discards[,8] <- round(discards[,8], 2)
+
+
+# add a searchable datatable
+discards2 <- discards
+discards2[,5:7] <- round(discards2[,5:7], 0)
+colnames(discards2) <- c("Species", "Sector", "Gear",
+                         "Year", "Discards (numbers)", "Discards (lbs ww)",
+                         "Dead discards (lbs ww)", "Discard mortality rate")
+DT <- datatable(discards2, class = 'cell-border stripe',
+          caption = 'Released fish data for select Gulf of Mexico species (1981 - 2016).',
+          filter = 'top', options = list(
+            pageLength = 15, autoWidth = TRUE
+          ))
+

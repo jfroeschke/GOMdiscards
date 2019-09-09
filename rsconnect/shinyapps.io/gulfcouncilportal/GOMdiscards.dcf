@@ -5,9 +5,9 @@ account: gulfcouncilportal
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 1158750
-bundleId: 2392190
+bundleId: 2400244
 url: https://gulfcouncilportal.shinyapps.io/GOMdiscards/
-when: 1567788919.19633
+when: 1568050420.85499
 asMultiple: FALSE
 asStatic: FALSE
 ignoredFiles: data/Gag Grouper Recreational Discards.xlsx|data/Greater Amberjack Recreational Discards ver2.xlsx|data/Red Snapper_Discard_working.xlsx|documentation/Selected Commercial Discards in Numbers and Pounds_Aug 2019.docx|documentation/Selected Recreational Discards in Numbers and Pounds_Aug 2019.docx

@@ -108,7 +108,7 @@ server <- function(input, output) {
     RT <- df$DiscardMortality[NROW]
     color <- 'green'
     #if(x > 0) color <- 'red'
-    valueBox(value = RT, subtitle = 'Release mortality rate', color = color)
+    valueBox(value = ifelse(input$pickGear == "Total commercial" | input$pickGear == "Total recreational",NA, RT), subtitle = 'Release mortality rate', color = color)
   })
   
   
@@ -117,17 +117,25 @@ server <- function(input, output) {
     df <- data.frame( Year = selectYearPlot()$Year, Discards= selectYearPlot()[,input$pickDiscard])
     NROW <- nrow(df)
     RT <- df[NROW,2]
-    RT <- round(RT/1000000,2)
+    #RT <- round(RT/1000000,2)
+    RT <- round(RT,2)
     color <- 'green'
     #if(x > 0) color <- 'red'
-    valueBox(value = RT, subtitle = input$pickDiscard, color = color)
+    valueBox( value = ifelse(input$pickGear == "Total commercial" | input$pickGear == "Total recreational",NA, RT), subtitle = input$pickDiscard, color = color)
   })
   
   output$valueBox3 <- renderValueBox({
-    ### Percent of total removals
+
     color <- 'green'
-    valueBox(value = 1, subtitle = "Percent of removals", color = color)
+    valueBox(value = ifelse(input$pickGear == "Total commercial" | input$pickGear == "Total recreational", NA, 1),
+    subtitle = "Percent of removals", color = color)
+
+    
   })
+  
+  
+#### DT table
+  output$tbl = renderDT(DT)
   
   
 }  
