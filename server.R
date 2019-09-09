@@ -100,12 +100,35 @@ server <- function(input, output) {
 
 ### use this concept to get discard mortality, use a similar one for avg weight
   output$valueBox1 <- renderValueBox({
-
-    x <-  1
+    df <- selectYearPlot()
+  
+    #df <- data.frame( Year = selectYearPlot()$Year, Discards= selectYearPlot()[,input$pickDiscard])
+    
+    NROW <- nrow(df)
+    RT <- df$DiscardMortality[NROW]
     color <- 'green'
-    if(x > 0) color <- 'red'
-    valueBox(value = x, subtitle = 'Valuebox example', color = color)
+    #if(x > 0) color <- 'red'
+    valueBox(value = RT, subtitle = 'Release mortality rate', color = color)
   })
+  
+  
+  output$valueBox2 <- renderValueBox({
+    df <- selectYearPlot()
+    df <- data.frame( Year = selectYearPlot()$Year, Discards= selectYearPlot()[,input$pickDiscard])
+    NROW <- nrow(df)
+    RT <- df[NROW,2]
+    RT <- round(RT/1000000,2)
+    color <- 'green'
+    #if(x > 0) color <- 'red'
+    valueBox(value = RT, subtitle = input$pickDiscard, color = color)
+  })
+  
+  output$valueBox3 <- renderValueBox({
+    ### Percent of total removals
+    color <- 'green'
+    valueBox(value = 1, subtitle = "Percent of removals", color = color)
+  })
+  
   
 }  
   

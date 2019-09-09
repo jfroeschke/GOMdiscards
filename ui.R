@@ -70,30 +70,30 @@ ui <-
                highchartOutput("discardPlotHC"),
               
                box(width=12,solidHeader = TRUE, status = "primary",
-              title="Summary of discards",
-              tableOutput("table1"),
-               infoBox(10 * 2, "Discard mortality rate", icon = icon("credit-card")),
+              title="Summary of discards for most recent year selected",
+              #tableOutput("table1"),
+               #infoBox(10 * 2, "Discard mortality rate"),
               valueBoxOutput('valueBox1'),
-               #valueBox(10 * 2, "Average size of discards", icon = icon("credit-card")),
-               valueBox(10 * 2, "Percent annual change", icon = icon("credit-card"))
+              valueBoxOutput('valueBox2'),
+              valueBoxOutput('valueBox3')
                )
                #plotOutput("plot2")
-               )))#,
+               ))),
                
 #############################################################        
-      # tabPanel("Summary",fluidRow(
-      #   column(width = 3,
-      #          pickerInput(
-      #            inputId = "pickSpecies",
-      #            label = "Select species2",
-      #            
-      #            choices = c("Red snapper",
-      #                        "Greater amberjack",
-      #                        
-      #                        "Gag"))
-      #          
-      #   ),
-      #   column(width = 9, "summary"))),
+      tabPanel("Summary",fluidRow(
+        column(width = 3,
+               pickerInput(
+                 inputId = "pickSpecies",
+                 label = "Select species2",
+
+                 choices = c("Red snapper",
+                             "Greater amberjack",
+
+                             "Gag"))
+
+        ),
+        column(width = 9, "summary")))#,
 #############################################################             
       
       
