@@ -1,0 +1,17 @@
+---
+title: " "
+output: html_document
+---
+
+#### About the data
+
+
+The specific approach used to estimate the number of total discards differs among fleets.  Generally speaking, the process involves using observed data to calculate a rate of discard (number of fish discarded per unit fishing effort) and then multiplying that rate by an estimate of total effort to obtain an estimate of total discards.
+
+For a variety of reasons, weights of discarded fish are not often measured.  Consequently, estimates of discard weight, like the ones provided here, were derived using additional sources of information.  The weight of discarded red snapper (Discards (lbs.) on Table 2-3) were calculated by multiplying discards (numbers) by a year and fleet-specific estimate of average weight per discard obtained from the most recent stock assessment model.  Dead discards, in both number and weight were obtained by multiplying discards (numbers) and discards (lbs.) by the fleet and year specific discard mortality rates shown.  
+
+#### Assumptions
+* Recreational estimates were provided in MRIP units with charter and APAIS calibrations. The FES calibration was not applied. 
+* Discards in pounds were computed using the average weight, by fishing mode and year, computed within the stock assessment.
+* Dead discards in numbers and weight were estimated by applying the release mortality used for that assessment. 
+

@@ -82,18 +82,33 @@ ui <-
                
 #############################################################        
       tabPanel("Summary",fluidRow(
-        column(width = 3,
-               pickerInput(
-                 inputId = "pickSpecies",
-                 label = "Select species2",
-
-                 choices = c("Red snapper",
-                             "Greater amberjack",
-
-                             "Gag"))
+        column(width = 2
 
         ),
-        column(width = 9, "summary")))#,
+        column(width = 8, 
+               box(width=12,
+                 #### About the data
+                 
+                 HTML(
+                 '<div id="about-the-data" class="section level4">
+<h4>About the data</h4>
+<p>The specific approach used to estimate the number of total discards differs from fleet to fleet; however, generally speaking the process involves using observed data to calculate a rate of discard (number of fish discarded per unit fishing effort) and then multiplying that rate by an estimate of total effort to obtain an estimate of total discards.</p>
+<p>For a variety of reasons, weights of discarded fish are not often measured. Consequently, estimates of discard weight, like the ones provided here, must be derived using additional sources of information.</p>
+<p>The weight of discarded red snapper (Discards (lbs.) on Table 2-3) were calculated by multiplying discards (numbers) by a year and fleet-specific estimate of average weight per discard obtained from the most recent stock assessment model. Dead discards, in both number and weight were obtained by multiplying discards (numbers) and discards (lbs.) by the fleet and year specific discard mortality rates shown in Table 1.</p>
+</div>
+<div id="assumptions" class="section level4">
+<h4>Assumptions</h4>
+<ul>
+<li>Recreational estimates were provided in MRIP units with charter and APAIS calibrations. The FES calibration was not applied.</li>
+<li>Discards in pounds were computed using the average weight, by fishing mode and year, computed within the stock assessment.</li>
+<li>Dead discards in numbers and weight were estimated by applying the release mortality used for that assessment.</li>
+</ul>
+</div>')
+                 
+                 )
+               ),
+        column(width = 2)
+        ))#,
 #############################################################             
       
       
