@@ -60,8 +60,8 @@ server <- function(input, output) {
                         input$pickYear[2], sep=" ")) %>%
     hc_subtitle(text=paste(input$pickDiscard, ": ", 
                         input$pickGear, sep="")) %>%
-     hc_add_series(name = input$pickDiscard, data = df[,2], type="line", marker = list(enabled = FALSE), color="#fb9a99") #%>%
-    # discardsOutPlot
+     hc_add_series(name = input$pickDiscard, data = df[,2], type="line", marker = list(enabled = FALSE), color="#008ccc") %>%
+    hc_exporting(enabled = TRUE)
   discardsOutPlot
 })
     
@@ -106,8 +106,8 @@ server <- function(input, output) {
     
     NROW <- nrow(df)
     RT <- df$DiscardMortality[NROW]
-    color <- 'green'
-    #if(x > 0) color <- 'red'
+    color <- "light-blue"
+    
     valueBox(value = ifelse(input$pickGear == "Total commercial" | input$pickGear == "Total recreational",NA, RT), subtitle = 'Release mortality rate', color = color)
   })
   
@@ -119,14 +119,14 @@ server <- function(input, output) {
     RT <- df[NROW,2]
     #RT <- round(RT/1000000,2)
     RT <- round(RT,2)
-    color <- 'green'
-    #if(x > 0) color <- 'red'
+    color <- "light-blue"
+
     valueBox( value = ifelse(input$pickGear == "Total commercial" | input$pickGear == "Total recreational",NA, RT), subtitle = input$pickDiscard, color = color)
   })
   
   output$valueBox3 <- renderValueBox({
 
-    color <- 'green'
+    color <- "light-blue"
     valueBox(value = ifelse(input$pickGear == "Total commercial" | input$pickGear == "Total recreational", NA, 1),
     subtitle = "Percent of removals", color = color)
 

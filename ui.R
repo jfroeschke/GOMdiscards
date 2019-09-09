@@ -6,7 +6,7 @@ ui <-
                   
                   sidebarMenu(disable = TRUE,
                     tags$head(includeCSS("Style.css")),
-                    tags$head(includeCSS("Style2.css")),
+                    # tags$head(includeCSS("Style2.css")),
                     menuItem(" ", tabName = "menu1"),
                     
                     #menuItem("Menu 2", tabName = "menu2", icon = icon("gears")),
