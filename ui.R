@@ -61,8 +61,8 @@ ui <-
                                        "Pounds of Discards" = "LbsDiscarded",
                                        "Pounds of Dead Discards" = "LbsDeadDiscarded"
                            ) #choices
-                         ), #picker input
-                         textOutput("text1")
+                         )#, #picker input
+                         #textOutput("text1")
                        
                          ),
                   column(width = 9,
