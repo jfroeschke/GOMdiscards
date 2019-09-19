@@ -39,6 +39,8 @@ rsAgg2 <- data.frame(Species= rsAgg$Species,
 
 discards <- rbind(discards, rsAgg2)
 
+
+
 ## clean up the data a bit.
 discards[,5:7] <- round(discards[,5:7], 0)
 discards[,8] <- round(discards[,8], 2)

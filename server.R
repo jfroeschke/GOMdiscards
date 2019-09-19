@@ -44,8 +44,52 @@ server <- function(input, output) {
   })
   
   ##########
+  output$pickSector <- renderUI({
+  pickerInput(
+    inputId = "pickSector",
+    label = "Select sector",
+    if(input$pickSpecies=="RedSnapper"){
+    choices = c("Recreational" = "Recreational",
+                "Commercial" = "Commercial"
+    )} else
+       if(input$pickSpecies=="Gag"){
+         choices = c("Recreational" = "Recreational")} else
+           if(input$pickSpecies=="GreaterAmberjack"){
+             choices = c("Recreational" = "Recreational")}
+      )
+    })#picker input
+  
+  # output$pickDiscard <- renderUI({
+  # pickerInput(
+  #   inputId = "pickDiscard",
+  #   label = "Select discard type",
+  #   choices = ifelse(input$pickSpecies=="RedSnapper",
+  #    c("Numbers Discarded" = "NumberDiscarded",
+  #               "Pounds of Discards" = "LbsDiscarded",
+  #               "Pounds of Dead Discards" = "LbsDeadDiscarded"),
+  #    c("Pounds of Dead Discards" = "LbsDeadDiscarded")
+  #   
+  #   ) #choices
+  # )#, #picker input 
+  # })#picker input
   
   
+  output$pickDiscard <- renderUI({
+    pickerInput(
+      inputId = "pickDiscard",
+      label = "Select discard type",
+      if(input$pickSpecies=="RedSnapper"){
+      choices = 
+                       c("Numbers Discarded" = "NumberDiscarded",
+                         "Pounds of Discards" = "LbsDiscarded",
+                         "Pounds of Dead Discards" = "LbsDeadDiscarded")} else
+      if(input$pickSpecies=="Gag"){ 
+        choices = c("Pounds of Dead Discards" = "LbsDeadDiscarded")} else
+          if(input$pickSpecies=="GreaterAmberjack"){
+            choices = c("Pounds of Dead Discards" = "LbsDeadDiscarded")}
+       #choices
+    )#, #picker input 
+  })#picker input
   
   ########################## Summary plot of discards
   hcOut <- reactive({
@@ -108,7 +152,7 @@ server <- function(input, output) {
     RT <- df$DiscardMortality[NROW]
     color <- "light-blue"
     
-    valueBox(value = ifelse(input$pickGear == "Total commercial" | input$pickGear == "Total recreational",NA, RT), subtitle = 'Release mortality rate', color = color)
+    valueBox(value = ifelse(input$pickGear == "Total commercial" | input$pickGear == "Total recreational",NA, prettyNum(RT,big.mark=",", preserve.width="none")), subtitle = 'Release mortality rate', color = color)
   })
   
   
@@ -121,7 +165,7 @@ server <- function(input, output) {
     RT <- round(RT,2)
     color <- "light-blue"
 
-    valueBox( value = ifelse(input$pickGear == "Total commercial" | input$pickGear == "Total recreational",NA, RT), subtitle = input$pickDiscard, color = color)
+    valueBox( value = ifelse(input$pickGear == "Total commercial" | input$pickGear == "Total recreational",NA, prettyNum(RT,big.mark=",", preserve.width="none")), subtitle = input$pickDiscard, color = color)
   })
   
   output$valueBox3 <- renderValueBox({

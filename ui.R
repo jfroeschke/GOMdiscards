@@ -39,29 +39,31 @@ ui <-
                                        "Gag" = "Gag"
                                        ) #choices
                                   ), #picker input
-                         pickerInput(
-                           inputId = "pickSector",
-                           label = "Select sector",
-                           choices = c("Recreational" = "Recreational",
-                                       "Commercial" = "Commercial"
-                                    ) #choices
-                                ), #picker input
+                         # pickerInput(
+                         #   inputId = "pickSector",
+                         #   label = "Select sector",
+                         #   choices = c("Recreational" = "Recreational",
+                         #               "Commercial" = "Commercial"
+                         #            ) #choices
+                         #        ), #picker input
                          
                          #### this will need be fixed.  Should be moved to server and populated based on unique from Sector reactive
+                         uiOutput("pickSector"),
                          uiOutput("pickGear"),
                          
                          
                          sliderInput("pickYear", "Select Years:", 
                                      sep="",min = 1981, max = 2016,
                                      value = c(2000,2016)),
-                         pickerInput(
-                           inputId = "pickDiscard",
-                           label = "Select discard type",
-                           choices = c("Numbers Discarded" = "NumberDiscarded",
-                                       "Pounds of Discards" = "LbsDiscarded",
-                                       "Pounds of Dead Discards" = "LbsDeadDiscarded"
-                           ) #choices
-                         )#, #picker input
+                         uiOutput("pickDiscard")
+                         # pickerInput(
+                         #   inputId = "pickDiscard",
+                         #   label = "Select discard type",
+                         #   choices = c("Numbers Discarded" = "NumberDiscarded",
+                         #               "Pounds of Discards" = "LbsDiscarded",
+                         #               "Pounds of Dead Discards" = "LbsDeadDiscarded"
+                         #   ) #choices
+                         # )#, #picker input
                          #textOutput("text1")
                        
                          ),
@@ -74,8 +76,8 @@ ui <-
               #tableOutput("table1"),
                #infoBox(10 * 2, "Discard mortality rate"),
               valueBoxOutput('valueBox1'),
-              valueBoxOutput('valueBox2'),
-              valueBoxOutput('valueBox3')
+              valueBoxOutput('valueBox2')#,
+              #valueBoxOutput('valueBox3')
                )
                #plotOutput("plot2")
                ))),
