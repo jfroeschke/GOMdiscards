@@ -44,8 +44,24 @@ server <- function(input, output) {
   })
   
   ##########
+  # output$pickSector <- renderUI({
+  # pickerInput(
+  #   inputId = "pickSector",
+  #   label = "Select sector",
+  #   if(input$pickSpecies=="RedSnapper"){
+  #   choices = c("Recreational" = "Recreational",
+  #               "Commercial" = "Commercial"
+  #   )} else
+  #      if(input$pickSpecies=="Gag"){
+  #        choices = c("Recreational" = "Recreational")} else
+  #          if(input$pickSpecies=="GreaterAmberjack"){
+  #            choices = c("Recreational" = "Recreational")}
+  #     )
+  #   })#picker input
+  
+  #########
   output$pickSector <- renderUI({
-  pickerInput(
+  radioButtons(
     inputId = "pickSector",
     label = "Select sector",
     if(input$pickSpecies=="RedSnapper"){
@@ -58,6 +74,8 @@ server <- function(input, output) {
              choices = c("Recreational" = "Recreational")}
       )
     })#picker input
+  
+  
   
   # output$pickDiscard <- renderUI({
   # pickerInput(
@@ -97,6 +115,7 @@ server <- function(input, output) {
     df <- selectYearPlot()
     df <- data.frame( Year = selectYearPlot()$Year, Discards= selectYearPlot()[,input$pickDiscard])
     colnames(df) <- c("Year", input$pickDiscard)
+    X <- 2016
     #df <- data.frame(Year=1:10, y=11:20)
   discardsOutPlot <- highchart() %>%
     hc_xAxis(categories =df$Year) %>%
@@ -105,6 +124,7 @@ server <- function(input, output) {
     hc_subtitle(text=paste(input$pickDiscard, ": ", 
                         input$pickGear, sep="")) %>%
      hc_add_series(name = input$pickDiscard, data = df[,2], type="line", marker = list(enabled = FALSE), color="#008ccc") %>%
+    #hc_add_series(name = input$pickDiscard, data = df[X,2], type="scatter", marker = list(enabled = TRUE), color="#39cccc") %>%
     hc_exporting(enabled = TRUE)
   discardsOutPlot
 })
@@ -163,7 +183,7 @@ server <- function(input, output) {
     RT <- df[NROW,2]
     #RT <- round(RT/1000000,2)
     RT <- round(RT,2)
-    color <- "light-blue"
+    color <- "teal"
 
     valueBox( value = ifelse(input$pickGear == "Total commercial" | input$pickGear == "Total recreational",NA, prettyNum(RT,big.mark=",", preserve.width="none")), subtitle = input$pickDiscard, color = color)
   })
