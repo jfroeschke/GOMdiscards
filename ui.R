@@ -92,7 +92,7 @@ ui <-
                          # )#, #picker input
                          #textOutput("text1")
                          actionButton("btn",HTML('<h4>How do I use this app?</h4>'), width=200,
-                                      style="background-color: #808a90;border-color: #808a90; color: #fff;margin: 6px 0px 6px 0px;" )
+                                      style="background-color: #0066ff;border-color: #0066ff; color: #fff;margin: 6px 0px 6px 0px;" )
                        
                          ),
                   column(width = 9,
