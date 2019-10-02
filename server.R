@@ -117,7 +117,7 @@ server <- function(input, output, session) {
     MAX <- max(df$Year)
     
   sliderInput("pickYear", "Select Years:",
-              sep="",min = MIN, max = MAX,
+              sep="",min = MIN, max = MAX, step=1,
               value = c(MIN,MAX))
   })
   
