@@ -1,4 +1,4 @@
-server <- function(input, output) { 
+server <- function(input, output, session) { 
   
   selectSpeciesPlot <- reactive({
     speciesPlot <- filter(discards, Species==input$pickSpecies)
@@ -109,6 +109,18 @@ server <- function(input, output) {
     )#, #picker input 
   })#picker input
   
+  output$pickYear <- renderUI({
+    df <- selectGearPlot()
+    df <- data.frame( Year = selectGearPlot()$Year, Discards= selectGearPlot()[,input$pickDiscard])
+    colnames(df) <- c("Year", input$pickDiscard)
+    MIN <- min(df$Year)
+    MAX <- max(df$Year)
+    
+  sliderInput("pickYear", "Select Years:",
+              sep="",min = MIN, max = MAX,
+              value = c(2000,2016))
+  })
+  
   ########################## Summary plot of discards
   hcOut <- reactive({
 
@@ -206,6 +218,15 @@ server <- function(input, output) {
 #### DT table
   output$tbl = renderDT(DT)
   
+  # observeEvent(input$btn,{
+  #   introjs(session,options = list(steps=steps()))
+  #   
+  # })
+  
+  observeEvent(input$btn,{
+    introjs(session)
+    
+  })
   
 }  
   

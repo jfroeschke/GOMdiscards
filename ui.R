@@ -1,6 +1,8 @@
 ui <- 
+ 
   
   dashboardPage(
+    
                 dashboardHeader(title="Discard Dashboard"),
                 dashboardSidebar(disable=TRUE,
                   
@@ -23,14 +25,15 @@ ui <-
                     )
                   
                 ),
-  dashboardBody(title="Discard Dashboard",
+  dashboardBody(
   
 
-    tabsetPanel(
+  
       tabPanel("Dashboard", 
                
                fluidRow(
                   column(width = 3,
+                         introBox(
                          pickerInput(
                            inputId = "pickSpecies",
                            label = "Select species",
@@ -38,24 +41,41 @@ ui <-
                                        "Greater amberjack" = "GreaterAmberjack",
                                        "Gag" = "Gag"
                                        ) #choices
-                                  ), #picker input
-                         # pickerInput(
-                         #   inputId = "pickSector",
-                         #   label = "Select sector",
-                         #   choices = c("Recreational" = "Recreational",
-                         #               "Commercial" = "Commercial"
-                         #            ) #choices
-                         #        ), #picker input
+                                  ),  #picker input
+                         data.step = 1,
+                         data.intro = "Use this menu to select a species of interest.  This list may be expanded in the future"
+                         ), 
+                         
+                         introjsUI(),
+                        
+                        
                          
                          #### this will need be fixed.  Should be moved to server and populated based on unique from Sector reactive
+                         introBox(
                          uiOutput("pickSector"),
+                         data.step = 2,
+                         data.intro = "Select a fishing sector if interest.  Recreational and commercial fisheries have different characteristics in terms of the number of species caught, depth captured, and percentage release versus retained"
+                          ), 
+                         
+                         introBox(
                          uiOutput("pickGear"),
+                         data.step = 3,
+                         data.intro = "Select a fishing gear if interest.  Recreational and commercial fisheries have different characteristics in terms of the number of species caught, depth captured, and percentage release versus retained"
+                         ),
                          
-                         
-                         sliderInput("pickYear", "Select Years:", 
-                                     sep="",min = 1981, max = 2016,
-                                     value = c(2000,2016)),
-                         uiOutput("pickDiscard")
+                         introBox(
+                           uiOutput("pickYear"),
+                         # sliderInput("pickYear", "Select Years:",
+                         #             sep="",min = 1981, max = 2016,
+                         #             value = c(2000,2016)),
+                         data.step = 4,
+                         data.intro = "Years"
+                         ),
+                         introBox(
+                         uiOutput("pickDiscard"),
+                         data.step = 5,
+                         data.intro = "Discard types"
+                         ),
                          # pickerInput(
                          #   inputId = "pickDiscard",
                          #   label = "Select discard type",
@@ -65,22 +85,40 @@ ui <-
                          #   ) #choices
                          # )#, #picker input
                          #textOutput("text1")
+                         actionButton("btn",HTML('<h4>How do I use this app?</h4>'), width=200,
+                                      style="background-color: #808a90;border-color: #808a90; color: #fff;margin: 6px 0px 6px 0px;" )
                        
                          ),
                   column(width = 9,
                #plotOutput("plot"),
+               introBox(
                highchartOutput("discardPlotHC"),
+               data.step = 6,
+               data.intro = "Chart"
+               ),
               
                box(width=12,solidHeader = TRUE, status = "primary",
               title="Summary of discards for most recent year selected",
               #tableOutput("table1"),
                #infoBox(10 * 2, "Discard mortality rate"),
+              introBox(
               valueBoxOutput('valueBox1'),
-              valueBoxOutput('valueBox2')#,
+              data.step = 7,
+              data.intro = "value box1"
+              ),
+              introBox(
+              valueBoxOutput('valueBox2'),
+              data.step = 8,
+              data.intro = "value box2"
+              )
+              
+  
               #valueBoxOutput('valueBox3')
                )
                #plotOutput("plot2")
-               ))),
+               ))), 
+    
+      
                
 #############################################################        
       tabPanel("About the data",fluidRow(
@@ -126,5 +164,5 @@ tabPanel("Gulf of Mexico discard data",fluidRow(
 
         #) #tabPanel
       ) #tabsetPanel
-    ) #ddashboardBody
+    #) #ddashboardBody
 )
