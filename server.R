@@ -115,7 +115,11 @@ server <- function(input, output) {
     df <- selectYearPlot()
     df <- data.frame( Year = selectYearPlot()$Year, Discards= selectYearPlot()[,input$pickDiscard])
     colnames(df) <- c("Year", input$pickDiscard)
-    X <- 2016
+    X <- nrow(df)
+    df2 <- df[X,2]
+    df3 <- c(rep(NA, (X-1)), df2)
+    df$Final <- df3
+    
     #df <- data.frame(Year=1:10, y=11:20)
   discardsOutPlot <- highchart() %>%
     hc_xAxis(categories =df$Year) %>%
@@ -124,7 +128,7 @@ server <- function(input, output) {
     hc_subtitle(text=paste(input$pickDiscard, ": ", 
                         input$pickGear, sep="")) %>%
      hc_add_series(name = input$pickDiscard, data = df[,2], type="line", marker = list(enabled = FALSE), color="#008ccc") %>%
-    #hc_add_series(name = input$pickDiscard, data = df[X,2], type="scatter", marker = list(enabled = TRUE), color="#39cccc") %>%
+   # hc_add_series(name = input$pickDiscard, data = df[,3], type="scatter", marker=list(enabled = FALSE), color="#39cccc", list(pointFormat = "Avg hour text! {point.Final}")) %>%
     hc_exporting(enabled = TRUE)
   discardsOutPlot
 })
