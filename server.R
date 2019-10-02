@@ -128,7 +128,8 @@ server <- function(input, output) {
     hc_subtitle(text=paste(input$pickDiscard, ": ", 
                         input$pickGear, sep="")) %>%
      hc_add_series(name = input$pickDiscard, data = df[,2], type="line", marker = list(enabled = FALSE), color="#008ccc") %>%
-   # hc_add_series(name = input$pickDiscard, data = df[,3], type="scatter", marker=list(enabled = FALSE), color="#39cccc", list(pointFormat = "Avg hour text! {point.Final}")) %>%
+  hc_add_series(name = input$pickDiscard, data = df[,3], type="scatter", marker=list(enabled = TRUE), color="#39cccc") %>%
+    hc_tooltip(crosshairs = TRUE, borderWidth = 5, sort = TRUE, table = TRUE) %>% 
     hc_exporting(enabled = TRUE)
   discardsOutPlot
 })

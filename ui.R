@@ -1,7 +1,7 @@
 ui <- 
   
   dashboardPage(
-                dashboardHeader(title=" "),
+                dashboardHeader(title="Discard Dashboard"),
                 dashboardSidebar(disable=TRUE,
                   
                   sidebarMenu(disable = TRUE,
@@ -23,7 +23,7 @@ ui <-
                     )
                   
                 ),
-  dashboardBody(
+  dashboardBody(title="Discard Dashboard",
   
 
     tabsetPanel(
