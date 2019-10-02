@@ -118,7 +118,7 @@ server <- function(input, output, session) {
     
   sliderInput("pickYear", "Select Years:",
               sep="",min = MIN, max = MAX,
-              value = c(2000,2016))
+              value = c(MIN,MAX))
   })
   
   ########################## Summary plot of discards
@@ -140,7 +140,7 @@ server <- function(input, output, session) {
     hc_subtitle(text=paste(input$pickDiscard, ": ", 
                         input$pickGear, sep="")) %>%
      hc_add_series(name = input$pickDiscard, data = df[,2], type="line", marker = list(enabled = FALSE), color="#008ccc") %>%
-  hc_add_series(name = input$pickDiscard, data = df[,3], type="scatter", marker=list(enabled = TRUE), color="#39cccc") %>%
+  hc_add_series(name = "Terminal year of selected data", data = df[,3], type="scatter", marker=list(enabled = TRUE), color="#39cccc") %>%
     hc_tooltip(crosshairs = TRUE, borderWidth = 5, sort = TRUE, table = TRUE) %>% 
     hc_exporting(enabled = TRUE)
   discardsOutPlot
@@ -187,9 +187,9 @@ server <- function(input, output, session) {
     
     NROW <- nrow(df)
     RT <- df$DiscardMortality[NROW]
-    color <- "light-blue"
+    color <- "teal"
     
-    valueBox(value = ifelse(input$pickGear == "Total commercial" | input$pickGear == "Total recreational",NA, prettyNum(RT,big.mark=",", preserve.width="none")), subtitle = 'Release mortality rate', color = color)
+    valueBox(value = ifelse(input$pickGear == "Total commercial" | input$pickGear == "Total recreational",NA, percent(RT)), subtitle = 'Release mortality rate', color = color)
   })
   
   
@@ -205,18 +205,19 @@ server <- function(input, output, session) {
     valueBox( value = ifelse(input$pickGear == "Total commercial" | input$pickGear == "Total recreational",NA, prettyNum(RT,big.mark=",", preserve.width="none")), subtitle = input$pickDiscard, color = color)
   })
   
-  output$valueBox3 <- renderValueBox({
+  output$valueBox3 <- renderInfoBox({
 
-    color <- "light-blue"
-    valueBox(value = ifelse(input$pickGear == "Total commercial" | input$pickGear == "Total recreational", NA, 1),
+    color <- "teal"
+    infoBox(title = 'test',value = list(1,2),
     subtitle = "Percent of removals", color = color)
 
-    
+
   })
-  
+
   
 #### DT table
-  output$tbl = renderDT(DT)
+  output$tbl = renderDT(DT) #%>% 
+    #formatStyle(DT, backgroundColor='yellow')
   
   # observeEvent(input$btn,{
   #   introjs(session,options = list(steps=steps()))

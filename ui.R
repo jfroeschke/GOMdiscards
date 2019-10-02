@@ -28,7 +28,7 @@ ui <-
   dashboardBody(
   
 
-  
+  tabsetPanel(
       tabPanel("Dashboard", 
                
                fluidRow(
@@ -43,7 +43,9 @@ ui <-
                                        ) #choices
                                   ),  #picker input
                          data.step = 1,
-                         data.intro = "Use this menu to select a species of interest.  This list may be expanded in the future"
+                         data.intro = "Use this menu to select a species of interest.  This list currently includes data for 3 species of interest 
+                         in the Gulf of Mexico, but may be expanded in the future.  Fisheries data are collected in collobaration with state and federal
+                         agencies.  NOAA Fisheries compiles and synthesizes these data and is the source of data in this dashboard."
                          ), 
                          
                          introjsUI(),
@@ -54,13 +56,17 @@ ui <-
                          introBox(
                          uiOutput("pickSector"),
                          data.step = 2,
-                         data.intro = "Select a fishing sector if interest.  Recreational and commercial fisheries have different characteristics in terms of the number of species caught, depth captured, and percentage release versus retained"
+                         data.intro = "Select a fishing sector if interest.  Recreational and commercial fisheries have different characteristics 
+                         in terms of the number of species caught, depth captured, and percentage of fish that are released versus retained.  The released fish 
+                         data are provided by sector to account for these differences."
                           ), 
                          
                          introBox(
                          uiOutput("pickGear"),
                          data.step = 3,
-                         data.intro = "Select a fishing gear if interest.  Recreational and commercial fisheries have different characteristics in terms of the number of species caught, depth captured, and percentage release versus retained"
+                         data.intro = "Select a fishing gear or region of interest. Different gears target captured fishes differently either because of the length of time the gear is deploy the depths typically fished, or the size of species targeted.  For red snaper the data are separated into two regions in the Gulf of Mexico.  Red snapper are managed as two stocks including a western stock (West of the Mississippi River) and an eastern stock (East of the  Mississippi River).  Based on the characteristics of the stock and the fishing practices in the respective region, the eastern and western stocks are considered separately for red snapper.  The remaining species included in this dashboard are managed as a single stock within the Gulf of Mexico." 
+                        
+                         
                          ),
                          
                          introBox(
@@ -69,12 +75,12 @@ ui <-
                          #             sep="",min = 1981, max = 2016,
                          #             value = c(2000,2016)),
                          data.step = 4,
-                         data.intro = "Years"
+                         data.intro = "This slider allows you to select a reference period of interest.  By default the tool defaults to the full time series of data available.  The length of data varies among species, gears etc."
                          ),
                          introBox(
                          uiOutput("pickDiscard"),
                          data.step = 5,
-                         data.intro = "Discard types"
+                         data.intro = "The released fish data are provided in three forms in this dashboard.  The first selection provides an estimate of the total number of released fish for the selected query.  This value inlcudes fish that are released and survive as well as the number individuals that do not survive after release.  Annual catch limits of fish stocks are monitored in the weight of retained fish.  The released fish data are also provided in weight and include both fish that survived after release and those that did not.  Finally, an estimate of dead discards is available.  This is calculated as the product of the weight of released fish and the release mortality rate.  For any particular species or component of the fishery, the release mortality rate may change through time because of regulatory changes, improvements in scientic information, or changes in the way the fishery is prosecuted."
                          ),
                          # pickerInput(
                          #   inputId = "pickDiscard",
@@ -94,7 +100,7 @@ ui <-
                introBox(
                highchartOutput("discardPlotHC"),
                data.step = 6,
-               data.intro = "Chart"
+               data.intro = "This separately for red snapper.  The remaining species included in this dashboard are managed as a single stock within the Gulf of Mexico."
                ),
               
                box(width=12,solidHeader = TRUE, status = "primary",
@@ -104,16 +110,16 @@ ui <-
               introBox(
               valueBoxOutput('valueBox1'),
               data.step = 7,
-              data.intro = "value box1"
+              data.intro = "This box reports the release mortality rate in the last year of data for the selected query."
               ),
               introBox(
               valueBoxOutput('valueBox2'),
               data.step = 8,
-              data.intro = "value box2"
-              )
-              
+              data.intro = "This box reports the number (or weight) of released fish in the last year of data for the selected query."
+              )#,
+               
   
-              #valueBoxOutput('valueBox3')
+              #infoBoxOutput('valueBox3')
                )
                #plotOutput("plot2")
                ))), 
@@ -162,7 +168,7 @@ tabPanel("Gulf of Mexico discard data",fluidRow(
 #))#,
 
 
-        #) #tabPanel
+        ) #tabPanel
       ) #tabsetPanel
-    #) #ddashboardBody
-)
+    ) #ddashboardBody
+#)
